@@ -12,6 +12,14 @@ const nextConfig = {
         },
       ],
     },
+
+    theme:{
+      extend:{
+        colors:{
+          primary: '#3490dc',
+        }
+      }
+    }
   };
   
   module.exports = nextConfig;

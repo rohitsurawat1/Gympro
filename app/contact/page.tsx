@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,28 +17,15 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    // Here you would typically send the form data to your server
     console.log('Form submitted:', formData)
+    // Reset form after submission
     setFormData({ name: '', email: '', message: '' })
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow-sm">
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="font-bold text-2xl text-primary">GymPro</Link>
-          <ul className="hidden md:flex space-x-8">
-            <li><Link href="/programs" className="text-gray-600 hover:text-primary">Programs</Link></li>
-            <li><Link href="/locations" className="text-gray-600 hover:text-primary">Locations</Link></li>
-            <li><Link href="/about" className="text-gray-600 hover:text-primary">About</Link></li>
-            <li><Link href="/contact" className="text-primary font-semibold">Contact</Link></li>
-          </ul>
-          <Button asChild>
-            <Link href="/free-workout">Free Workout</Link>
-          </Button>
-        </nav>
-      </header>
-
-      <main className="container mx-auto px-4 py-8">
+    <div className="bg-gray-100 min-h-screen">
+      <div className="container mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
         
         <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -86,7 +71,9 @@ export default function Contact() {
                   className="w-full px-3 py-2 border rounded-md"
                 ></textarea>
               </div>
-              <Button type="submit">Send Message</Button>
+              <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+                Send Message
+              </button>
             </form>
           </div>
           <div>
@@ -107,47 +94,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </main>
-
-      <footer className="bg-gray-800 text-white py-8 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">GymPro</h3>
-              <p>Transform your body, transform your life.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link href="/programs" className="hover:text-primary">Programs</Link></li>
-                <li><Link href="/locations" className="hover:text-primary">Locations</Link></li>
-                <li><Link href="/about" className="hover:text-primary">About Us</Link></li>
-                <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Connect With Us</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-primary">Facebook</a></li>
-                <li><a href="#" className="hover:text-primary">Instagram</a></li>
-                <li><a href="#" className="hover:text-primary">Twitter</a></li>
-                <li><a href="#" className="hover:text-primary">LinkedIn</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Newsletter</h4>
-              <p className="mb-4">Subscribe to our newsletter for tips and special offers.</p>
-              <form className="flex">
-                <input type="email" placeholder="Your email" className="px-4 py-2 w-full text-gray-900 rounded-l-md focus:outline-none" />
-                <Button type="submit" className="rounded-l-none">Subscribe</Button>
-              </form>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p>&copy; 2023 GymPro. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   )
 }
