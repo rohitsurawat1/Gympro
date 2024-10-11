@@ -35,11 +35,11 @@ export default function About() {
           <div>
             <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
             <p className="mb-4">
-              At GymPro, our mission is to empower individuals to transform their lives through fitness. We believe that everyone has the potential to achieve their health and wellness goals, and we're here to provide the support, guidance, and resources needed to make those goals a reality.
+              At GymPro, our mission is to empower individuals to transform their lives through fitness. We believe that everyone has the potential to achieve their health and wellness goals, and we&apos;re here to provide the support, guidance, and resources needed to make those goals a reality.
             </p>
             <h2 className="text-2xl font-bold mb-4">Our Story</h2>
             <p className="mb-4">
-              Founded in 2010, GymPro started as a small local gym with a passion for helping people get fit. Over the years, we've grown into a network of state-of-the-art facilities across the country, but our commitment to personalized care and community support remains at the heart of everything we do.
+              Founded in 2010, GymPro started as a small local gym with a passion for helping people get fit. Over the years, we&apos;ve grown into a network of state-of-the-art facilities across the country, but our commitment to personalized care and community support remains at the heart of everything we do.
             </p>
             <h2 className="text-2xl font-bold mb-4">Our Values</h2>
             <ul className="list-disc list-inside mb-4">

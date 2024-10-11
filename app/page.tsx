@@ -1,6 +1,9 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
+'use client'
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
@@ -14,12 +17,23 @@ export default function Home() {
             <li><Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link></li>
             <li><Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link></li>
           </ul>
-          <Button asChild>
-            <Link href="/free-workout">Free Workout</Link>
-          </Button>
+          <div className="md:hidden">
+            <Button asChild variant="outline" size="sm">
+              <Link href="/menu">Menu</Link>
+            </Button>
+          </div>
+          <SignedOut>
+            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+              <Button className="bg-blue-500 text-white hover:bg-blue-600 transition duration-200">
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
         </nav>
       </header>
-
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative h-[600px]">
@@ -72,12 +86,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonial Section */}
-        <section className="py-16">
+       {/* Testimonial Section */}
+       <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">What Our Members Say</h2>
             <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-              <p className="text-xl italic mb-4">"GymPro has completely transformed my life. The trainers are exceptional, and the community is so supportive. I've never felt better!"</p>
+              <p className="text-xl italic mb-4">&quot;GymPro has completely transformed my life. The trainers are exceptional, and the community is so supportive. I&apos;ve never felt better!&ldquo;</p>
               <div className="flex items-center">
                 <Image
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
@@ -117,32 +131,38 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                <li><Link href="/programs" className="hover:underline">Programs</Link></li>
-                <li><Link href="/locations" className="hover:underline">Locations</Link></li>
-                <li><Link href="/about" className="hover:underline">About Us</Link></li>
-                <li><Link href="/contact" className="hover:underline">Contact</Link></li>
+                <Link href="/programs">Programs</Link>
+                <Link href="/locations">Locations</Link>
+                <Link href="/about">About Us</Link>
+                <Link href="/contact">Contact</Link>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Connect With Us</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:underline">Facebook</a></li>
-                <li><a href="#" className="hover:underline">Instagram</a></li>
-                <li><a href="#" className="hover:underline">Twitter</a></li>
-                <li><a href="#" className="hover:underline">LinkedIn</a></li>
+                {['Facebook', 'Instagram', 'Twitter', 'LinkedIn'].map((social) => (
+                  <li key={social}>
+                    <a href="#" className="hover:underline">{social}</a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Newsletter</h4>
               <p className="mb-4">Subscribe to our newsletter for tips and special offers.</p>
               <form className="flex">
-                <input type="email" placeholder="Your email" className="px-4 py-2 w-full text-gray-900 rounded-l-md focus:outline-none" />
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="px-4 py-2 w-full text-gray-900 rounded-l-md focus:outline-none"
+                  aria-label="Email for newsletter"
+                />
                 <Button type="submit" className="rounded-l-none">Subscribe</Button>
               </form>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p>&copy; 2023 GymPro. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} GymPro. All rights reserved.</p>
           </div>
         </div>
       </footer>
